@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPDB - SMPN 3 Pagedangan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #004080;
+            --secondary-color: #002f5e;
+            --accent-color: #ffc107;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light-color);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .school-motto {
+            font-style: italic;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background: var(--secondary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav ul li {
+            position: relative;
+        }
+        
+        nav ul li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover, 
+        nav ul li a.active {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--accent-color);
+        }
+        
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            height: 50vh;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            line-height: 1.2;
+        }
+        
+        .breadcrumb {
+            padding: 1rem;
+            background-color: #e9ecef;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .content-section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .ppdb-info {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .info-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .info-card {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .info-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-card h3 i {
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        .info-card p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-card .highlight {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+            text-align: right;
+        }
+        
+        .right {
+            left: 50%;
+            text-align: left;
+        }
+        
+        .left::after {
+            right: -12px;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-date {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .registration-form {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .form-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0,64,128,0.2);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .requirements {
+            margin-top: 3rem;
+        }
+        
+        .requirements h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .requirements ol {
+            padding-left: 1.5rem;
+        }
+        
+        .requirements li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .alert {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .alert-info {
+            background-color: #e7f5ff;
+            color: #1864ab;
+            border-left: 4px solid #1864ab;
+        }
+        
+        .alert-warning {
+            background-color: #fff9db;
+            color: #e67700;
+            border-left: 4px solid #e67700;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 1rem 1.5rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+                width: 100%;
+                text-align: right;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li a {
+                padding: 1rem;
+                text-align: center;
+            }
+            
+            .hero {
+                height: 40vh;
+            }
+            
+            .hero-content {
+                padding: 0 1rem;
+            }
+            
+            .content-section {
+                padding: 3rem 1rem;
+            }
+            
+            .timeline::before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .left, .right {
+                left: 0;
+                text-align: left;
+            }
+            
+            .left::after, .right::after {
+                left: 21px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .school-motto {
+                font-size: 0.9rem;
+            }
+            
+            .hero {
+                height: 35vh;
+                min-height: 250px;
+            }
+            
+            .info-box {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SMP NEGERI 3 PAGEDANGAN</h1>
+        <p class="school-motto">"Unggul dalam Prestasi, Berkarakter, dan Berbudaya Lingkungan"</p>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="profil.html"><i class="fas fa-school"></i> Profil</a></li>
+                <li><a href="akademik.html"><i class="fas fa-book"></i> Akademik</a></li>
+                <li><a href="#" class="active"><i class="fas fa-user-graduate"></i> PPDB</a></li>
+                <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Penerimaan Peserta Didik Baru</h1>
+            <p>Tahun Ajaran 2025/2026</p>
+        </div>
+    </section>
+    
+    <div class="breadcrumb">
+        <a href="index.html">Beranda</a> &raquo; <span>PPDB</span>
+    </div>
+    
+    <section class="content-section">
+        <div class="alert alert-info">
+            <h3><i class="fas fa-info-circle"></i> Informasi Penting</h3>
+            <p>Pendaftaran PPDB SMP Negeri 3 Pagedangan Tahun Ajaran 2025/2026 akan dibuka pada tanggal 1 Juni 2025. Persiapkan dokumen-dokumen yang diperlukan.</p>
+        </div>
+        
+        <div class="ppdb-info">
+            <h2 class="section-title">Informasi PPDB</h2>
+            
+            <div class="info-box">
+                <div class="info-card">
+                    <h3><i class="fas fa-calendar-alt"></i> Jadwal PPDB</h3>
+                    <p><span class="highlight">Pendaftaran Online:</span> 1 - 15 Juni 2025</p>
+                    <p><span class="highlight">Pengumuman:</span> 20 Juni 2025</p>
+                    <p><span class="highlight">Daftar Ulang:</span> 21 - 25 Juni 2025</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-users"></i> Kuota Penerimaan</h3>
+                    <p><span class="highlight">Zonasi:</span> 240 siswa (80%)</p>
+                    <p><span class="highlight">Afirmasi:</span> 30 siswa (10%)</p>
+                    <p><span class="highlight">Prestasi:</span> 30 siswa (10%)</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-phone-alt"></i> Kontak Panitia</h3>
+                    <p><span class="highlight">Telepon:</span> (021) 55678901</p>
+                    <p><span class="highlight">Email:</span> ppdb@smpn3pagedangan.sch.id</p>
+                    <p><span class="highlight">Lokasi:</span> Kantor PPDB SMPN 3 Pagedangan</p>
+                </div>
+            </div>
+            
+            <h3 class="section-title">Alur Pendaftaran</h3>
+            
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1 - 15 Juni 2025</div>
+                        <h3>Pendaftaran Online</h3>
+                        <p>Calon peserta melakukan pendaftaran melalui website PPDB dengan mengisi formulir dan mengunggah dokumen persyaratan.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">16 - 19 Juni 2025</div>
+                        <h3>Verifikasi Berkas</h3>
+                        <p>Panitia melakukan verifikasi dokumen dan data peserta secara online dan offline (jika diperlukan).</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">20 Juni 2025</div>
+                        <h3>Pengumuman</h3>
+                        <p>Hasil seleksi diumumkan melalui website PPDB dan papan pengumuman di sekolah.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">21 - 25 Juni 2025</div>
+                        <h3>Daftar Ulang</h3>
+                        <p>Peserta yang diterima melakukan daftar ulang dengan menyerahkan dokumen asli dan melengkapi administrasi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="registration-form">
+            <h2 class="form-title">Formulir Pendaftaran Online</h2>
+            
+            <div class="alert alert-warning">
+                <p><i class="fas fa-exclamation-triangle"></i> Formulir pendaftaran akan aktif pada tanggal 1 Juni 2025 pukul 08.00 WIB.</p>
+            </div>
+            
+            <form id="ppdbForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" id="nama" name="nama" placeholder="Nama sesuai akte kelahiran" disabled>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nisn">NISN</label>
+                        <input type="text" id="nisn" name="nisn" placeholder="Nomor Induk Siswa Nasional" disabled>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tempat_lahir">Tempat Lahir</label>
+                        <input type="text" id="tempat_lahir" name="tempat_lahir" disabled>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tanggal_lahir">Tanggal Lahir</label>
+                        <input type="date" id="tanggal_lahir" name="tanggal_lahir" disabled>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <select id="jenis_kelamin" name="jenis_kelamin" disabled>
+                            <option value="">Pilih Jenis Kelamin</option>
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="asal_sekolah">Asal Sekolah</label>
+                        <input type="text" id="asal_sekolah" name="asal_sekolah" placeholder="Nama SD/MI" disabled>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="no_hp">Nomor HP/WhatsApp</label>
+                        <input type="tel" id="no_hp" name="no_hp" placeholder="0812-3456-7890" disabled>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="alamat">Alamat Lengkap</label>
+                    <textarea id="alamat" name="alamat" rows="3" disabled></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="kecamatan">Kecamatan</label>
+                        <input type="text" id="kecamatan" name="kecamatan" disabled>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="kelurahan">Kelurahan/Desa</label>
+                        <input type="text" id="kelurahan" name="kelurahan" disabled>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="jalur">Jalur Pendaftaran</label>
+                    <select id="jalur" name="jalur" disabled>
+                        <option value="">Pilih Jalur Pendaftaran</option>
+                        <option value="zonasi">Zonasi</option>
+                        <option value="afirmasi">Afirmasi (Keluarga Tidak Mampu/Disabilitas)</option>
+                        <option value="prestasi">Prestasi (Akademik/Non-Akademik)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-block" disabled>Daftar Sekarang</button>
+            </form>
+        </div>
+        
+        <div class="requirements">
+            <h3 class="section-title">Persyaratan Pendaftaran</h3>
+            
+            <ol>
+                <li>Fotokopi Akte Kelahiran (2 lembar)</li>
+                <li>Fotokopi Kartu Keluarga (2 lembar)</li>
+                <li>Fotokopi Ijazah SD/MI yang telah dilegalisir (2 lembar)</li>
+                <li>Fotokopi SKHUN/SKHUS yang telah dilegalisir (2 lembar)</li>
+                <li>Pas foto ukuran 3x4 (4 lembar, background merah)</li>
+                <li>Fotokopi rapor kelas 4-6 yang telah dilegalisir (untuk jalur prestasi)</li>
+                <li>Surat Keterangan Tidak Mampu (untuk jalur afirmasi)</li>
+                <li>Surat Keterangan Disabilitas (jika ada)</li>
+                <li>Fotokopi piagam prestasi (jika ada)</li>
+            </ol>
+            
+            <div class="alert alert-warning">
+                <p><i class="fas fa-exclamation-circle"></i> Semua dokumen harus dibawa saat daftar ulang untuk verifikasi.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Tentang Kami</h3>
+                <p>SMP Negeri 3 Pagedangan adalah lembaga pendidikan negeri yang berkomitmen untuk memberikan pendidikan berkualitas dengan mengembangkan potensi akademik dan karakter siswa.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Link Cepat</h3>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="profil.html">Profil Sekolah</a></li>
+                    <li><a href="akademik.html">Program Akademik</a></li>
+                    <li><a href="#">PPDB Online</a></li>
+                    <li><a href="kontak.html">Hubungi Kami</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Kontak Kami</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Jl. Kacipet RT 002/RW.003 Desa,malang nengah  123, Pagedangan, Tangerang</li>
+                    <li><i class="fas fa-phone"></i> (021) 55678901</li>
+                    <li><i class="fas fa-envelope"></i> info@smpn3pagedangan.sch.id</li>
+                    <li><i class="fas fa-clock"></i> Senin-Jumat: 07.00 - 14.00 WIB</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 SMP Negeri 3 Pagedangan. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if(navMenu.classList.contains('show')) {
+                        navMenu.classList.remove('show');
+                    }
+                }
+            });
+        });
+        
+        // Add active class to current page in navigation
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('nav ul li a');
+        
+        navLinks.forEach(link => {
+            const linkPage = link.getAttribute('href');
+            if (currentPage === linkPage) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+        
+        // Simulate form submission
+        document.getElementById('ppdbForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Pendaftaran akan dibuka pada tanggal 1 Juni 2025. Silakan kembali pada tanggal tersebut untuk mengisi formulir.');
+        });
+    </script>
+</body>
+
+</html>

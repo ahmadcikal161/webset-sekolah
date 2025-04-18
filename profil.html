@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - SMPN 3 Pagedangan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #004080;
+            --secondary-color: #002f5e;
+            --accent-color: #ffc107;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light-color);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .school-motto {
+            font-style: italic;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background: var(--secondary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav ul li {
+            position: relative;
+        }
+        
+        nav ul li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover, 
+        nav ul li a.active {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--accent-color);
+        }
+        
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            height: 50vh;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            line-height: 1.2;
+        }
+        
+        .breadcrumb {
+            padding: 1rem;
+            background-color: #e9ecef;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .content-section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .profile-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .profile-text {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .profile-text p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .profile-sidebar {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .profile-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .profile-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .info-list {
+            list-style: none;
+        }
+        
+        .info-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-list i {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+            margin-top: 0.2rem;
+        }
+        
+        .visi-misi {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .visi-misi-item {
+            margin-bottom: 2rem;
+        }
+        
+        .visi-misi-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .visi-misi-item ul {
+            padding-left: 1.5rem;
+        }
+        
+        .visi-misi-item ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 1rem 1.5rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+                width: 100%;
+                text-align: right;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li a {
+                padding: 1rem;
+                text-align: center;
+            }
+            
+            .hero {
+                height: 40vh;
+            }
+            
+            .hero-content {
+                padding: 0 1rem;
+            }
+            
+            .content-section {
+                padding: 3rem 1rem;
+            }
+            
+            .profile-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .school-motto {
+                font-size: 0.9rem;
+            }
+            
+            .hero {
+                height: 35vh;
+                min-height: 250px;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SMP NEGERI 3 PAGEDANGAN</h1>
+        <p class="school-motto">"Unggul dalam Prestasi, Berkarakter, dan Berbudaya Lingkungan"</p>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="#" class="active"><i class="fas fa-school"></i> Profil</a></li>
+                <li><a href="akademik.html"><i class="fas fa-book"></i> Akademik</a></li>
+                <li><a href="ppdb.html"><i class="fas fa-user-graduate"></i> PPDB</a></li>
+                <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Profil Sekolah</h1>
+            <p>Mengenal Lebih Dekat SMP Negeri 3 Pagedangan</p>
+        </div>
+    </section>
+    
+    <div class="breadcrumb">
+        <a href="index.html">Beranda</a> &raquo; <span>Profil Sekolah</span>
+    </div>
+    
+    <section class="content-section">
+        <div class="profile-content">
+            <div class="profile-text">
+                <h2 class="section-title">Profil SMPN 3 Pagedangan</h2>
+                
+                <p>SMP Negeri 3 Pagedangan berdiri pada tanggal 12 Juli 1985 berdasarkan Surat Keputusan Menteri Pendidikan dan Kebudayaan Nomor 060/0/1985. Sekolah ini terletak di Jalan Pendidikan No. 123, Kecamatan Pagedangan, Kabupaten Tangerang, Provinsi Banten.</p>
+                
+                <p>Dalam perjalanannya, SMP Negeri 3 Pagedangan telah mengalami perkembangan yang signifikan baik dari segi fisik bangunan, sarana prasarana, maupun kualitas pendidikan. Saat ini sekolah memiliki 24 ruang kelas, laboratorium IPA, laboratorium komputer, perpustakaan, ruang serba guna, dan fasilitas pendukung lainnya.</p>
+                
+                <p>Dengan motto "Unggul dalam Prestasi, Berkarakter, dan Berbudaya Lingkungan", SMP Negeri 3 Pagedangan berkomitmen untuk memberikan pendidikan terbaik yang mengintegrasikan kecerdasan intelektual, emosional, dan spiritual. Sekolah ini telah meluluskan ribuan siswa yang berhasil melanjutkan pendidikan ke jenjang yang lebih tinggi dan berkontribusi positif bagi masyarakat.</p>
+                
+                <div class="visi-misi">
+                    <div class="visi-misi-item">
+                        <h3>Visi Sekolah</h3>
+                        <p>"Mewujudkan sekolah unggul yang menghasilkan lulusan berprestasi akademik dan non-akademik, berkarakter mulia, peduli lingkungan, dan mampu bersaing di era global."</p>
+                    </div>
+                    
+                    <div class="visi-misi-item">
+                        <h3>Misi Sekolah</h3>
+                        <ul>
+                            <li>Menyelenggarakan pembelajaran yang efektif dan inovatif</li>
+                            <li>Mengembangkan potensi siswa secara optimal melalui kegiatan intrakurikuler dan ekstrakurikuler</li>
+                            <li>Menanamkan nilai-nilai karakter dan budi pekerti luhur</li>
+                            <li>Menciptakan lingkungan sekolah yang bersih, hijau, dan nyaman</li>
+                            <li>Membangun kerjasama yang harmonis dengan seluruh stakeholder pendidikan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-sidebar">
+                <div class="profile-card">
+                    <h3>Identitas Sekolah</h3>
+                    <ul class="info-list">
+                        <li><i class="fas fa-check-circle"></i> <strong>NPSN:</strong> 69888830</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Status:</strong> Negeri</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Bentuk Pendidikan:</strong> SMP</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Akreditasi:</strong> B (Unggul)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Kepala Sekolah:</strong>  Hj. ITA RATNA JELITA, S.Pd.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Jumlah Guru:</strong> 33 orang</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Jumlah Siswa:</strong> 720 orang</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Luas Tanah:</strong> 7000 m²</li>
+                    </ul>
+                </div>
+                
+                <div class="profile-card">
+                    <h3>Program Unggulan</h3>
+                    <ul class="info-list">
+                        <li><i class="fas fa-star"></i> Kegiatan pembelajaran p5</li>
+                        <li><i class="fas fa-star"></i> ekstrakurikuler futsal</li>
+                        <li><i class="fas fa-star"></i> ekstrakurikuler  paskibra </li>
+                        <li><i class="fas fa-star"></i> Ekstrakurikuler Wajib Pramuka</li>
+                        <li><i class="fas fa-star"></i> ekstrakurikuler voli </li>
+                        <li><i class="fas fa-star"></i> Pembelajaran Berbasis Proyek</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Galeri Sekolah</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="poto wisuda.jpeg" alt="Gedung Sekolah">
+            </div>
+            <div class="gallery-item">
+                <img src="kegiatan smp.jpg" alt="Kegiatan Belajar">
+            </div>
+            <div class="gallery-item">
+                <img src="saung ijo.jpeg" alt="Laboratorium">
+            </div>
+            <div class="gallery-item">
+                <img src="ancol.jpg" alt="Perpustakaan">
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Tentang Kami</h3>
+                <p>SMP Negeri 3 Pagedangan adalah lembaga pendidikan negeri yang berkomitmen untuk memberikan pendidikan berkualitas dengan mengembangkan potensi akademik dan karakter siswa.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Link Cepat</h3>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="#">Profil Sekolah</a></li>
+                    <li><a href="akademik.html">Program Akademik</a></li>
+                    <li><a href="ppdb.html">PPDB Online</a></li>
+                    <li><a href="kontak.html">Hubungi Kami</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Kontak Kami</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Jl. Kacipet RT 002/RW.003 Desa,malang nengah  123, Pagedangan, Tangerang</li>
+                    <li><i class="fas fa-phone"></i> (021) 55678901</li>
+                    <li><i class="fas fa-envelope"></i> info@smpn3pagedangan.sch.id</li>
+                    <li><i class="fas fa-clock"></i> Senin-Jumat: 07.00 - 16.00 WIB</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 SMP Negeri 3 Pagedangan. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if(navMenu.classList.contains('show')) {
+                        navMenu.classList.remove('show');
+                    }
+                }
+            });
+        });
+        
+        // Add active class to current page in navigation
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('nav ul li a');
+        
+        navLinks.forEach(link => {
+            const linkPage = link.getAttribute('href');
+            if (currentPage === linkPage) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
